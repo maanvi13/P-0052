@@ -1,0 +1,53 @@
+.section-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.gradient-creator { background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); }
+.gradient-editor { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+.gradient-brand { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.gradient-cinema { background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%); }
+
+.section-card h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.section-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  color: var(--accent-neon);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.card-footer .arrow {
+  transition: transform 0.3s ease;
+}
+
+.section-card:hover .card-footer .arrow {
+  transform: translateX(5px);
+}

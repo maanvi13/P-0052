@@ -1,0 +1,72 @@
+.home-main {
+  padding-top: 150px; /* offset for fixed navbar */
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 100px;
+}
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-neon);
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -1.5px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+}
+
+.portals-section {
+  margin-top: 60px;
+}
+
+.portals-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.portals-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.portals-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.portals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
