@@ -28,7 +28,8 @@
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 28px;
+  align-items: center;
 }
 
 .nav-item {
@@ -41,6 +42,44 @@
 }
 
 .nav-item:hover, .nav-item.active {
+  color: var(--text-primary);
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 180px;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 200;
+  animation: fadeIn 0.2s ease;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: rgba(255,255,255,0.06);
   color: var(--text-primary);
 }
 

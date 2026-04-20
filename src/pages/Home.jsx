@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import SectionCard from '../components/SectionCard';
-import { Camera, Edit3, Briefcase, Video } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Camera, Edit3, Briefcase, Video, UserCircle, Megaphone, Shield, Users } from 'lucide-react';
 import './Home.css';
 
 export default function Home() {
@@ -35,6 +36,45 @@ export default function Home() {
     }
   ];
 
+  const dashboards = [
+    {
+      title: 'Creator Side',
+      description: 'Signup → Plan → Book Studio → Create → Edit → Brand Deals → Earn',
+      icon: UserCircle,
+      linkTo: '/dashboard/creator',
+      color: '#a855f7',
+      grad: 'linear-gradient(135deg, #a855f7, #7c3aed)',
+      steps: 7,
+    },
+    {
+      title: 'Brand Side',
+      description: 'Signup → Campaign → Find Creators → Collaborate → Pay',
+      icon: Megaphone,
+      linkTo: '/dashboard/brand',
+      color: '#06b6d4',
+      grad: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+      steps: 5,
+    },
+    {
+      title: 'Admin Side',
+      description: 'Manage Users → Bookings → Campaigns → Monitor Payments',
+      icon: Shield,
+      linkTo: '/dashboard/admin',
+      color: '#f59e0b',
+      grad: 'linear-gradient(135deg, #f59e0b, #d97706)',
+      steps: 4,
+    },
+    {
+      title: 'Staff Side',
+      description: 'Schedule → Prep Studio → Assist Creator → Complete → Editing',
+      icon: Users,
+      linkTo: '/dashboard/staff',
+      color: '#10b981',
+      grad: 'linear-gradient(135deg, #10b981, #059669)',
+      steps: 5,
+    },
+  ];
+
   return (
     <>
       <Navbar />
@@ -67,6 +107,55 @@ export default function Home() {
                 <SectionCard {...section} />
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ── Role Dashboards Section ── */}
+        <section className="portals-section">
+          <div className="portals-header animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <h2>Role Dashboards</h2>
+            <p>Step-by-step workflow dashboards built for every stakeholder.</p>
+          </div>
+
+          <div className="portals-grid">
+            {dashboards.map((d, i) => {
+              const Icon = d.icon;
+              return (
+                <Link to={d.linkTo} key={i} style={{ textDecoration: 'none' }}>
+                  <div
+                    className="glass-panel animate-fade-in"
+                    style={{
+                      padding: 28,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 16,
+                      cursor: 'pointer',
+                      animationDelay: `${0.2 + i * 0.1}s`,
+                      transition: 'all 0.35s ease',
+                    }}
+                  >
+                    <div style={{
+                      width: 52, height: 52, borderRadius: 14,
+                      background: d.grad,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      boxShadow: `0 6px 20px ${d.color}44`,
+                    }}>
+                      <Icon size={24} color="#fff" />
+                    </div>
+                    <div>
+                      <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', fontWeight: 700, marginBottom: 6 }}>{d.title}</h3>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.5 }}>{d.description}</p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+                      <span style={{ fontSize: '0.75rem', fontWeight: 700, color: d.color, letterSpacing: '0.05em' }}>
+                        {d.steps} STEPS
+                      </span>
+                      <span style={{ fontSize: '0.8rem', color: d.color, fontWeight: 600 }}>Open Dashboard →</span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
       </main>

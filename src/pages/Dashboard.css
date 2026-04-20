@@ -1,0 +1,537 @@
+/* ============================================================
+   Dashboard.css – Shared styles for all 4 role dashboards
+   Creator | Brand | Admin | Staff
+   ============================================================ */
+
+/* ── Page Layout ─────────────────────────────────────────── */
+.dash-page {
+  padding-top: 120px;
+  padding-bottom: 100px;
+  min-height: 100vh;
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow blob */
+.dash-page::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+}
+
+.dash-page.role-creator::before  { background: radial-gradient(#a855f7, #7c3aed); }
+.dash-page.role-brand::before    { background: radial-gradient(#06b6d4, #0891b2); }
+.dash-page.role-admin::before    { background: radial-gradient(#f59e0b, #d97706); }
+.dash-page.role-staff::before    { background: radial-gradient(#10b981, #059669); }
+
+/* ── Role Accent Tokens ──────────────────────────────────── */
+.role-creator { --role-color: #a855f7; --role-glow: rgba(168, 85, 247, 0.35); --role-grad: linear-gradient(135deg, #a855f7, #7c3aed); }
+.role-brand   { --role-color: #06b6d4; --role-glow: rgba(6, 182, 212, 0.35);  --role-grad: linear-gradient(135deg, #06b6d4, #0891b2); }
+.role-admin   { --role-color: #f59e0b; --role-glow: rgba(245, 158, 11, 0.35); --role-grad: linear-gradient(135deg, #f59e0b, #d97706); }
+.role-staff   { --role-color: #10b981; --role-glow: rgba(16, 185, 129, 0.35); --role-grad: linear-gradient(135deg, #10b981, #059669); }
+
+/* ── Hero Header ─────────────────────────────────────────── */
+.dash-hero {
+  text-align: center;
+  margin-bottom: 72px;
+  position: relative;
+  z-index: 1;
+}
+
+.dash-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--role-color);
+  background: rgba(255,255,255,0.04);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--role-color);
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.dash-role-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--role-color);
+  box-shadow: 0 0 8px var(--role-glow);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+.dash-hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 18px;
+  color: var(--text-primary);
+}
+
+.dash-hero h1 .role-accent {
+  background: var(--role-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dash-hero p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 560px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.dash-hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Role-themed primary button */
+.btn-role {
+  background: var(--role-grad);
+  color: #fff;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-role:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px var(--role-glow);
+}
+
+/* ── Stats Row ───────────────────────────────────────────── */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  backdrop-filter: var(--glass-blur);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.stat-card:hover {
+  border-color: var(--role-color);
+  transform: translateY(-3px);
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--role-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Section Title ───────────────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-label h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.section-label .label-line {
+  flex: 1;
+  height: 1px;
+  background: var(--glass-border);
+}
+
+/* ── Workflow Step Flow ───────────────────────────────────── */
+.workflow-flow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 64px;
+  z-index: 1;
+}
+
+/* vertical connector */
+.workflow-flow::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--role-color), transparent);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.step-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 6px 0;
+  animation: slideStep 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideStep {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 2px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--role-color);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 0 var(--role-glow);
+}
+
+.step-item.active .step-num,
+.step-num:hover {
+  background: var(--role-grad);
+  border-color: var(--role-color);
+  color: #fff;
+  box-shadow: 0 0 20px var(--role-glow);
+}
+
+.step-item.completed .step-num {
+  background: var(--role-grad);
+  border-color: transparent;
+  color: #fff;
+}
+
+.step-body {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: var(--glass-blur);
+  position: relative;
+  overflow: hidden;
+}
+
+.step-body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--role-grad);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+.step-item.active .step-body,
+.step-body:hover {
+  border-color: var(--role-color);
+  box-shadow: 0 4px 24px var(--role-glow);
+  transform: translateX(4px);
+}
+
+.step-body-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.step-info { flex: 1; }
+
+.step-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.step-desc {
+  color: var(--text-secondary);
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+.step-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--role-color);
+}
+
+.step-status-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.step-status-tag.active   { background: rgba(168,85,247,0.15); color: var(--role-color); border: 1px solid var(--role-color); }
+.step-status-tag.done     { background: rgba(16,185,129,0.12); color: #10b981; border: 1px solid #10b981; }
+.step-status-tag.pending  { background: rgba(255,255,255,0.04); color: var(--text-secondary); border: 1px solid var(--glass-border); }
+
+/* ── Quick Action Cards ──────────────────────────────────── */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 60px;
+  z-index: 1;
+  position: relative;
+}
+
+.action-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: var(--glass-blur);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--role-grad);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.action-card:hover {
+  border-color: var(--role-color);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px var(--role-glow);
+}
+
+.action-card:hover::before { opacity: 0.06; }
+
+.action-card-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; }
+
+.action-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--role-grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 16px var(--role-glow);
+}
+
+.action-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.action-card p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.action-card .card-cta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--role-color);
+  margin-top: 4px;
+  transition: gap 0.2s;
+}
+
+.action-card:hover .card-cta { gap: 10px; }
+
+/* ── Activity / Notification Feed ───────────────────────── */
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1;
+  position: relative;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  backdrop-filter: var(--glass-blur);
+  transition: border-color 0.3s;
+}
+
+.activity-item:hover { border-color: var(--role-color); }
+
+.activity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--role-color);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--role-glow);
+}
+
+.activity-text {
+  flex: 1;
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+}
+
+.activity-text strong { color: var(--text-primary); }
+
+.activity-time {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ── Progress Bar ────────────────────────────────────────── */
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.progress-label {
+  min-width: 130px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--role-grad);
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progress-pct {
+  min-width: 38px;
+  text-align: right;
+  font-size: 0.82rem;
+  color: var(--role-color);
+  font-weight: 700;
+}
+
+/* ── Two-column layout helper ────────────────────────────── */
+.dash-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  z-index: 1;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .dash-two-col { grid-template-columns: 1fr; }
+  .workflow-flow::before { left: 24px; }
+}
+
+@media (max-width: 640px) {
+  .dash-page { padding-top: 110px; }
+  .dash-hero h1 { font-size: 1.9rem; }
+}
